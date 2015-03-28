@@ -11,8 +11,11 @@ import android.widget.Button;
 
 import com.yolosh.android.MainActivity;
 import com.yolosh.android.R;
+import com.yolosh.android.RegisterActivity;
 
 public class LoginFragment extends Fragment {
+
+	Button btnLogin, btnRegister;
 
 	public static LoginFragment newInstance() {
 		LoginFragment fragment = new LoginFragment();
@@ -29,8 +32,10 @@ public class LoginFragment extends Fragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		Button button = (Button) view.findViewById(R.id.id_btn_login);
-		button.setOnClickListener(new OnClickListener() {
+		btnLogin = (Button) view.findViewById(R.id.id_btn_login);
+		btnRegister = (Button) view.findViewById(R.id.id_btn_register);
+
+		btnLogin.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -38,6 +43,14 @@ public class LoginFragment extends Fragment {
 				getActivity().finish();
 			}
 		});
-	}
+		btnRegister.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(),
+						RegisterActivity.class);
+				startActivity(intent);
+			}
+		});
+	}
 }

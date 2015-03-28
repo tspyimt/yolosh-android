@@ -1678,13 +1678,13 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f09001f;
         public static final int action_bar_title=0x7f09001e;
         public static final int action_context_bar=0x7f090032;
-        public static final int action_example=0x7f090047;
+        public static final int action_example=0x7f09004f;
         public static final int action_menu_divider=0x7f090005;
         public static final int action_menu_presenter=0x7f090006;
         public static final int action_mode_bar=0x7f09002e;
         public static final int action_mode_bar_stub=0x7f09002d;
         public static final int action_mode_close_button=0x7f090020;
-        public static final int action_settings=0x7f090046;
+        public static final int action_settings=0x7f09004e;
         public static final int activity_chooser_view_content=0x7f090021;
         public static final int always=0x7f090014;
         public static final int beginning=0x7f09001b;
@@ -1704,8 +1704,16 @@ containing a value of this type.
         public static final int home=0x7f090000;
         public static final int homeAsUp=0x7f09000e;
         public static final int icon=0x7f090026;
-        public static final int id_btn_login=0x7f090043;
-        public static final int id_welcome_imageview=0x7f090045;
+        public static final int id_btn_login=0x7f090049;
+        public static final int id_btn_login_facebook=0x7f09004a;
+        public static final int id_btn_login_google=0x7f09004b;
+        public static final int id_btn_register=0x7f090046;
+        public static final int id_edt_password_login=0x7f090048;
+        public static final int id_edt_password_register1=0x7f090044;
+        public static final int id_edt_password_register2=0x7f090045;
+        public static final int id_edt_username_login=0x7f090047;
+        public static final int id_edt_username_register=0x7f090043;
+        public static final int id_welcome_imageview=0x7f09004d;
         public static final int id_welcome_viewpager=0x7f09003f;
         public static final int ifRoom=0x7f090016;
         public static final int image=0x7f090023;
@@ -1729,7 +1737,7 @@ containing a value of this type.
         public static final int search_plate=0x7f090039;
         public static final int search_src_text=0x7f09003a;
         public static final int search_voice_btn=0x7f09003e;
-        public static final int section_label=0x7f090044;
+        public static final int section_label=0x7f09004c;
         public static final int shortcut=0x7f09002a;
         public static final int showCustom=0x7f090010;
         public static final int showHome=0x7f090011;
@@ -1799,11 +1807,12 @@ containing a value of this type.
         public static final int abc_simple_dropdown_hint=0x7f030015;
         public static final int activity_login=0x7f030016;
         public static final int activity_main=0x7f030017;
-        public static final int fragment_login=0x7f030018;
-        public static final int fragment_main=0x7f030019;
-        public static final int fragment_main_navigation_drawer=0x7f03001a;
-        public static final int fragment_welcome=0x7f03001b;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
+        public static final int activity_register=0x7f030018;
+        public static final int fragment_login=0x7f030019;
+        public static final int fragment_main=0x7f03001a;
+        public static final int fragment_main_navigation_drawer=0x7f03001b;
+        public static final int fragment_welcome=0x7f03001c;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
     }
     public static final class menu {
         public static final int global=0x7f0c0000;
@@ -1866,27 +1875,33 @@ containing a value of this type.
         /**  Content description for the Toolbar icon used to collapse an expanded action mode. [CHAR LIMIT=NONE] 
          */
         public static final int abc_toolbar_collapse_description=0x7f0a0004;
-        public static final int action_example=0x7f0a0016;
-        public static final int action_settings=0x7f0a0017;
-        public static final int action_sign_in=0x7f0a001e;
-        public static final int action_sign_in_short=0x7f0a001f;
+        public static final int action_example=0x7f0a0018;
+        public static final int action_settings=0x7f0a0019;
+        public static final int action_sign_in=0x7f0a0024;
+        public static final int action_sign_in_short=0x7f0a0025;
         public static final int app_name=0x7f0a0010;
-        public static final int dummy_button=0x7f0a0019;
-        public static final int dummy_content=0x7f0a001a;
-        public static final int error_field_required=0x7f0a0025;
-        public static final int error_incorrect_password=0x7f0a0024;
-        public static final int error_invalid_email=0x7f0a0022;
-        public static final int error_invalid_password=0x7f0a0023;
-        public static final int hello_world=0x7f0a001b;
-        public static final int navigation_drawer_close=0x7f0a0015;
-        public static final int navigation_drawer_open=0x7f0a0014;
-        public static final int plus_disconnect=0x7f0a0021;
-        public static final int plus_sign_out=0x7f0a0020;
+        public static final int dummy_button=0x7f0a001a;
+        public static final int dummy_content=0x7f0a001b;
+        public static final int error_field_required=0x7f0a002b;
+        public static final int error_incorrect_password=0x7f0a002a;
+        public static final int error_invalid_email=0x7f0a0028;
+        public static final int error_invalid_password=0x7f0a0029;
+        public static final int hello_world=0x7f0a001c;
+        public static final int navigation_drawer_close=0x7f0a0017;
+        public static final int navigation_drawer_open=0x7f0a0016;
+        public static final int plus_disconnect=0x7f0a0027;
+        public static final int plus_sign_out=0x7f0a0026;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f0a001c;
-        public static final int prompt_password=0x7f0a001d;
-        public static final int title_activity_login=0x7f0a0018;
+        public static final int prompt_email=0x7f0a0022;
+        public static final int prompt_password=0x7f0a0023;
+        public static final int text_email=0x7f0a001d;
+        public static final int text_login=0x7f0a0020;
+        public static final int text_password=0x7f0a001e;
+        public static final int text_password_retype=0x7f0a001f;
+        public static final int text_register=0x7f0a0021;
+        public static final int title_activity_login=0x7f0a0014;
+        public static final int title_activity_register=0x7f0a0015;
         public static final int title_section1=0x7f0a0011;
         public static final int title_section2=0x7f0a0012;
         public static final int title_section3=0x7f0a0013;
@@ -1907,19 +1922,21 @@ containing a value of this type.
 
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
-
+		name="AppBaseTheme" parent="android:Theme.Holo.Light"
     
  API 11 theme customizations can go here. 
 
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
         res/values-v11/styles.xml on API 14+ devices.
+        name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar"
     
  API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f0b00f8;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
+ customize the color palette 
          */
         public static final int AppTheme=0x7f0b00f9;
         public static final int Base_Animation_AppCompat_DropDownUp=0x7f0b00df;

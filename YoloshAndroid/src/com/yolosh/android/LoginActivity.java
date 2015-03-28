@@ -19,6 +19,7 @@ public class LoginActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		
 		List<Fragment> fragments = getFragments();
 		pageAdapter = new WelcomePageAdapter(getSupportFragmentManager(),
 				fragments);
@@ -26,6 +27,7 @@ public class LoginActivity extends FragmentActivity {
 		pager.setAdapter(pageAdapter);
 	}
 
+	// init list pages welcome screen
 	private List<Fragment> getFragments() {
 		List<Fragment> fList = new ArrayList<Fragment>();
 
