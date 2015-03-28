@@ -2,24 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    tools:context="${relativePackage}.${activityClass}" >
+    android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email" />
-
-    <Button
-        android:id="@+id/id_btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/id_welcome_viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 
 </LinearLayout>
