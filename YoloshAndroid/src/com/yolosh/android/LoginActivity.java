@@ -1,30 +1,38 @@
 package com.yolosh.android;
 
-import android.app.Activity;
-import android.content.Intent;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 
-public class LoginActivity extends Activity {
+import com.yolosh.android.adapter.WelcomePageAdapter;
+import com.yolosh.android.fragment.LoginFragment;
+import com.yolosh.android.fragment.WelcomeFragment;
 
-	Button buttonLogin;
+public class LoginActivity extends FragmentActivity {
+	WelcomePageAdapter pageAdapter;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		List<Fragment> fragments = getFragments();
+		pageAdapter = new WelcomePageAdapter(getSupportFragmentManager(),
+				fragments);
+		ViewPager pager = (ViewPager) findViewById(R.id.id_welcome_viewpager);
+		pager.setAdapter(pageAdapter);
+	}
 
-		buttonLogin = (Button) findViewById(R.id.id_btn_login);
-		buttonLogin.setOnClickListener(new OnClickListener() {
+	private List<Fragment> getFragments() {
+		List<Fragment> fList = new ArrayList<Fragment>();
 
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-				startActivity(intent);
-				finish();
-			}
-		});
+		fList.add(WelcomeFragment.newInstance(R.drawable.img_1));
+		fList.add(WelcomeFragment.newInstance(R.drawable.img_2));
+		fList.add(WelcomeFragment.newInstance(R.drawable.img_3));
+		fList.add(LoginFragment.newInstance());
+		return fList;
 	}
 }
