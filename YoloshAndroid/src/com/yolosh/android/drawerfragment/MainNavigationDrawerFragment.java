@@ -1,5 +1,12 @@
-package com.yolosh.android;
+package com.yolosh.android.drawerfragment;
 
+
+import com.yolosh.android.R;
+import com.yolosh.android.R.drawable;
+import com.yolosh.android.R.id;
+import com.yolosh.android.R.layout;
+import com.yolosh.android.R.menu;
+import com.yolosh.android.R.string;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -27,7 +34,7 @@ import android.widget.Toast;
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class MainNavigationDrawerFragment extends Fragment {
 
     /**
      * Remember the position of the selected item.
@@ -58,7 +65,7 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
 
-    public NavigationDrawerFragment() {
+    public MainNavigationDrawerFragment() {
     }
 
     @Override
@@ -90,7 +97,7 @@ public class NavigationDrawerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mDrawerListView = (ListView) inflater.inflate(
-                R.layout.fragment_navigation_drawer, container, false);
+                R.layout.fragment_main_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
