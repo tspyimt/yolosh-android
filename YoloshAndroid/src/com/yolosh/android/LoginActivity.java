@@ -10,7 +10,7 @@ import android.support.v4.view.ViewPager;
 
 import com.yolosh.android.adapter.WelcomePageAdapter;
 import com.yolosh.android.fragment.LoginFragment;
-import com.yolosh.android.fragment.WelcomeFragment;
+import com.yolosh.android.fragment.WelcomePageFragment;
 
 public class LoginActivity extends FragmentActivity {
 	WelcomePageAdapter pageAdapter;
@@ -31,9 +31,9 @@ public class LoginActivity extends FragmentActivity {
 	private List<Fragment> getFragments() {
 		List<Fragment> fList = new ArrayList<Fragment>();
 
-		fList.add(WelcomeFragment.newInstance(R.drawable.img_1));
-		fList.add(WelcomeFragment.newInstance(R.drawable.img_2));
-		fList.add(WelcomeFragment.newInstance(R.drawable.img_3));
+		fList.add(WelcomePageFragment.newInstance(R.drawable.img_1));
+		fList.add(WelcomePageFragment.newInstance(R.drawable.img_2));
+		fList.add(WelcomePageFragment.newInstance(R.drawable.img_3));
 		fList.add(LoginFragment.newInstance());
 		return fList;
 	}
