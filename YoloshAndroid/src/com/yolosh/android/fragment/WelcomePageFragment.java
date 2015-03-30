@@ -11,10 +11,10 @@ import com.yolosh.android.R;
 import com.yolosh.android.util.MessageKeyValues;
 
 // Fragment hold image welcome when app run first
-public class WelcomeFragment extends Fragment {
+public class WelcomePageFragment extends Fragment {
 
-	public static final WelcomeFragment newInstance(int message) {
-		WelcomeFragment f = new WelcomeFragment();
+	public static final WelcomePageFragment newInstance(int message) {
+		WelcomePageFragment f = new WelcomePageFragment();
 		Bundle bdl = new Bundle();
 		bdl.putInt(MessageKeyValues.EXTRA_IMAGE, message);
 		f.setArguments(bdl);
@@ -25,7 +25,7 @@ public class WelcomeFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		int message = getArguments().getInt(MessageKeyValues.EXTRA_IMAGE);
-		View v = inflater.inflate(R.layout.fragment_welcome, container, false);
+		View v = inflater.inflate(R.layout.fragment_page_welcome, container, false);
 		ImageView imageView = (ImageView) v
 				.findViewById(R.id.id_welcome_imageview);
 		// Log.d("LOG", "set image");
