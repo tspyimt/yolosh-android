@@ -31,7 +31,7 @@ public class ExplorerPageFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_pagemain_explorer,
+		View rootView = inflater.inflate(R.layout.fragment_page_main_explorer,
 				container, false);
 		return rootView;
 	}

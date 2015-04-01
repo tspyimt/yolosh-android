@@ -30,4 +30,31 @@
     <string name="title_activity_main_activity2_activity222">MainActivity2Activity222</string>
     <string name="title_activity_new">New</string>
 
+
+    <!--Colors-->
+    <string name="fab_default_color_text">Default</string>
+    <string name="fab_red_color_text">Red</string>
+    <string name="fab_pink_color_text">Pink</string>
+    <string name="fab_purple_color_text">Purple</string>
+    <string name="fab_deep_purple_color_text">Deep Purple</string>
+    <string name="fab_indigo_color_text">Indigo</string>
+    <string name="fab_blue_color_text">Blue</string>
+    <string name="fab_light_blue_color_text">Light Blue</string>
+    <string name="fab_cyan_color_text">Cyan</string>
+    <string name="fab_teal_color_text">Teal</string>
+    <string name="fab_green_color_text">Green</string>
+    <string name="fab_light_green_color_text">Light Green</string>
+    <string name="fab_lime_color_text">Lime</string>
+    <string name="fab_yellow_color_text">Yellow</string>
+    <string name="fab_amber_color_text">Amber</string>
+    <string name="fab_orange_color_text">Orange</string>
+    <string name="fab_deep_orange_color_text">Deep Orange</string>
+    <string name="fab_brown_color_text">Brown</string>
+    <string name="fab_grey_color_text">Grey</string>
+    <string name="fab_blue_grey_color_text">Blue Grey</string>
+    <string name="fab_black_and_white_color_text">Black and White</string>
+    <string name="fab_black_stroke_color_text">Black</string>
+    <string name="fab_grey_stroke_color_text">Grey</string>
+    <string name="fab_yellow_stroke_color_text">Yellow 900</string>
+
 </resources>

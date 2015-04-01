@@ -31,7 +31,7 @@ public class TimelinePageFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_pagemain_timeline,
+		View rootView = inflater.inflate(R.layout.fragment_page_main_timeline,
 				container, false);
 		return rootView;
 	}
