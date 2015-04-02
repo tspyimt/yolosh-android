@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.viewpagerindicator.TitlePageIndicator;
-import com.yolosh.android.MainActivity;
 import com.yolosh.android.R;
+import com.yolosh.android.activity.MainActivity;
 import com.yolosh.android.adapter.MainFragmentPageAdaper;
 
 public class MainFragment extends Fragment {
