@@ -1,14 +1,12 @@
 package com.yolosh.android.fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 
 import com.software.shell.fab.ActionButton;
 import com.yolosh.android.R;
@@ -16,6 +14,10 @@ import com.yolosh.android.adapter.CollectionGridAdapter;
 import com.yolosh.android.model.CollectionObject;
 import com.yolosh.android.myview.MyGridView;
 import com.yolosh.android.myview.OnDetectScrollListener;
+import com.yolosh.android.util.ConstantValues;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CollectionPageFragment extends Fragment {
 
@@ -56,8 +58,8 @@ public class CollectionPageFragment extends Fragment {
         gridView = (MyGridView) view.findViewById(R.id.id_gridview_Collection);
         fab = (ActionButton) view.findViewById(R.id.id_fab_collection);
 
-        fab.setShowAnimation(ActionButton.Animations.ROLL_FROM_DOWN);
-        fab.setHideAnimation(ActionButton.Animations.ROLL_TO_DOWN);
+        fab.setShowAnimation(ActionButton.Animations.JUMP_FROM_DOWN);
+        fab.setHideAnimation(ActionButton.Animations.JUMP_TO_DOWN);
 
         fab.setButtonColor(getResources().getColor(R.color.fab_material_cyan_500));
         fab.setButtonColorPressed(getResources().getColor(R.color.fab_material_cyan_900));
@@ -72,15 +74,44 @@ public class CollectionPageFragment extends Fragment {
         gridView.setOnDetectScrollListener(new OnDetectScrollListener() {
             @Override
             public void onUpScrolling() {
-                if (fab.isHidden()) {
-                    fab.show();
+                if (dataList.size() > 0 && gridView.getLastVisiblePosition() <
+                        dataList.size() - ConstantValues.GRIDVIEW_DELAY_ANIMATION) {
+                    if (fab.isHidden()) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                fab.show();
+                            }
+                        }, ConstantValues.FAB_SHOW_DELAY_ANIMATION);
+                    }
+                    if (!((ActionBarActivity) getActivity()).getSupportActionBar().isShowing()) {
+//                        new Handler().postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+                                ((ActionBarActivity) getActivity()).getSupportActionBar().show();
+//                            }
+//                        }, ConstantValues.ACTIONBAR_SHOW_DELAY_ANIMATION);
+                    }
                 }
             }
 
             @Override
             public void onDownScrolling() {
                 if (fab.isShown()) {
-                    fab.hide();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            fab.hide();
+                        }
+                    }, ConstantValues.FAB_HIDE_DELAY_ANIMATION);
+                }
+                if (((ActionBarActivity) getActivity()).getSupportActionBar().isShowing()) {
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+                            ((ActionBarActivity) getActivity()).getSupportActionBar().hide();
+//                        }
+//                    }, ConstantValues.ACTIONBAR_HIDE_DELAY_ANIMATION);
                 }
             }
         });

@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/navigation_drawer"
-        android:name="com.yolosh.android.drawerfragment.MainNavigationDrawerFragment"
+        android:name="com.yolosh.android.fragment.drawerfragment.MainNavigationDrawerFragment"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"

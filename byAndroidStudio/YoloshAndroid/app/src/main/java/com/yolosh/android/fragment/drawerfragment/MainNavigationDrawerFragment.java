@@ -1,4 +1,4 @@
-package com.yolosh.android.drawerfragment;
+package com.yolosh.android.fragment.drawerfragment;
 
 import android.app.Activity;
 import android.content.SharedPreferences;

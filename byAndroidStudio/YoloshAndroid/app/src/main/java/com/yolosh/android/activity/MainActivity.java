@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.yolosh.android.R;
-import com.yolosh.android.drawerfragment.MainNavigationDrawerFragment;
+import com.yolosh.android.fragment.drawerfragment.MainNavigationDrawerFragment;
 import com.yolosh.android.fragment.MainFragment;
 
 public class MainActivity extends ActionBarActivity
