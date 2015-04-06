@@ -8,7 +8,7 @@
         android:id="@+id/indicator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/actionBarPrimary"
+        android:background="@color/Cyan_500"
         android:textColor="@android:color/darker_gray"
         app:footerColor="@android:color/holo_orange_light"
         app:footerIndicatorHeight="3dp"

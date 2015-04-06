@@ -1,0 +1,11 @@
+yolosh-apk_v1.008 (06/04/2015) : rebuild login activity
+yolosh-apk_v1.007 (04/04/2015) : style Actionbar color
+yolosh-apk_v1.006 (02/04/2015) : make hiding Actionbar when scroll
+yolosh-apk_v1.005 (01/04/2015) : add Floating Action Button in collection page
+yolosh-apk_v1.004 (30/03/2015) : add collection page layout
+yolosh-apk_v1.003 (29/03/2015) : add slide page in main activity
+yolosh-apk_v1.002 (28/03/2015) : add welcome picture page and login page
+yolosh-apk_v1.001 (27/03/2015) : Build project
+
+
+

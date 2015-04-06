@@ -26,10 +26,10 @@
     <string name="text_password_retype">Retype Password</string>
     <string name="text_login">Login</string>
     <string name="text_register">Register</string>
-    <string name="title_activity_main_activity2">MainActivity2Activity</string>
-    <string name="title_activity_main_activity2_activity222">MainActivity2Activity222</string>
     <string name="title_activity_new">New</string>
 
+    <string name="text_sign_up">Sign up</string>
+    <string name="text_log_in">Log in</string>
 
     <!--Colors-->
     <string name="fab_default_color_text">Default</string>
@@ -56,5 +56,6 @@
     <string name="fab_black_stroke_color_text">Black</string>
     <string name="fab_grey_stroke_color_text">Grey</string>
     <string name="fab_yellow_stroke_color_text">Yellow 900</string>
+    <string name="title_activity_step">StepActivity</string>
 
 </resources>

@@ -1,14 +1,25 @@
 <resources>
-
-    <color name="black_overlay">#66000000</color>
     <!--
             Material 500 colors are for normal button state
             Material 900 colors are for pressed button state
         -->
+    <color name="Black">#000000</color>
 
-    <!--Color for ActionBar-->
-    <color name="actionBarPrimaryDark">#0097a7</color>
-    <color name="actionBarPrimary">#00bcd4</color>
-    <color name="tabPrimary">#ff00d4cc</color>
+    <color name="Blue_600">#1E88E5</color>
 
+    <color name="Green_900">#1B5E20</color>
+    <color name="Green_600">#43A047</color>
+
+    <color name="Cyan_800">#00838F</color>
+    <color name="Cyan_500">#00BCD4</color>
+    <color name="Cyan_100">#B2EBF2</color>
+
+    <color name="Grey_800">#424242</color>
+    <color name="Grey_700">#616161</color>
+    <color name="Grey_500">#9E9E9E</color>
+
+    <color name="White">#FFFFFF</color>
+
+    <color name="test">#FFCCCCCC</color>
+    <color name="select">#1E88E5</color>
 </resources>

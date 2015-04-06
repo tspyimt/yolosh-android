@@ -1,13 +1,77 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    android:orientation="vertical" >
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/theme1">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/id_welcome_viewpager"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="@android:color/transparent">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:orientation="vertical"
+            android:background="@android:color/transparent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yolosh"
+                android:textSize="30dp"
+                android:layout_gravity="center_vertical|center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You only live one so happy"
+                android:layout_gravity="center_vertical|center_horizontal" />
+        </LinearLayout>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/id_welcome_viewpager"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:layout_weight="25" />
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:padding="20dip"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="7"
+            android:background="@android:color/transparent"
+            app:radius="4dp"
+            app:pageColor="@color/Black"
+            app:fillColor="@color/White"
+            app:strokeColor="@color/White"
+            app:strokeWidth="1dp" />
+    </LinearLayout>
+
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:id="@+id/id_btn_Sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/Blue_600"
+        android:layout_gravity="bottom|start"
+        android:text="@string/text_sign_up"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="15dp" />
+
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:id="@+id/id_btn_Log_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/Green_600"
+        android:layout_gravity="bottom|end"
+        android:text="@string/text_log_in"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp" />
+
+</FrameLayout>

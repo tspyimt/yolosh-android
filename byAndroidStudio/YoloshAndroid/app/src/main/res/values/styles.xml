@@ -1,9 +1,37 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/actionBarPrimary</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- actionBar-->
+        <item name="actionBarStyle">@style/MyApp.MyActionBar</item>
+        <!-- dropdown Menu-->
+        <item name="dropDownListViewStyle">@style/MyApp.MyPopupMenuListView</item>
+        <item name="actionOverflowButtonStyle">@style/MyApp.MyOverflowButton</item>
+
+        <item name="actionBarDivider">@null</item>
+        <!-- OverFlow Menu Text Color -->
+        <item name="android:textColor">@android:color/white</item>
     </style>
+
+    <!-- ActionBar styles for Text Style, Background-->
+    <style name="MyApp.MyActionBar" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="background">@color/Cyan_500</item>
+        <item name="titleTextStyle">@style/MyApp.MyTitleTextStyle</item>
+    </style>
+    <style name="MyApp.MyTitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <!-- Overflow Button in ActionBar -->
+    <style name="MyApp.MyOverflowButton" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_drawer</item>
+    </style>
+
+    <!-- Background color for Action Bar overflow menu -->
+    <style name="MyApp.MyPopupMenuListView" parent="Widget.AppCompat.Light.ListView.DropDown">
+        <!--<item name="android:divider">@android:color/white</item>-->
+        <!--<item name="android:dividerHeight">1dp</item>-->
+        <item name="android:background">@color/Cyan_500</item>
+    </style>
+
 
 </resources>
