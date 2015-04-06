@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.software.shell.fab.ActionButton;
 import com.yolosh.android.R;
@@ -84,14 +85,14 @@ public class CollectionPageFragment extends Fragment {
                             }
                         }, ConstantValues.FAB_SHOW_DELAY_ANIMATION);
                     }
-                    if (!((ActionBarActivity) getActivity()).getSupportActionBar().isShowing()) {
+//                    if (!((ActionBarActivity) getActivity()).getSupportActionBar().isShowing()) {
 //                        new Handler().postDelayed(new Runnable() {
 //                            @Override
 //                            public void run() {
-                                ((ActionBarActivity) getActivity()).getSupportActionBar().show();
+//                                ((ActionBarActivity) getActivity()).getSupportActionBar().show();
 //                            }
 //                        }, ConstantValues.ACTIONBAR_SHOW_DELAY_ANIMATION);
-                    }
+//                    }
                 }
             }
 
@@ -105,16 +106,23 @@ public class CollectionPageFragment extends Fragment {
                         }
                     }, ConstantValues.FAB_HIDE_DELAY_ANIMATION);
                 }
-                if (((ActionBarActivity) getActivity()).getSupportActionBar().isShowing()) {
+//                if (((ActionBarActivity) getActivity()).getSupportActionBar().isShowing()) {
 //                    new Handler().postDelayed(new Runnable() {
 //                        @Override
 //                        public void run() {
-                            ((ActionBarActivity) getActivity()).getSupportActionBar().hide();
+//                            ((ActionBarActivity) getActivity()).getSupportActionBar().hide();
 //                        }
 //                    }, ConstantValues.ACTIONBAR_HIDE_DELAY_ANIMATION);
-                }
+//                }
             }
         });
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
     }
 
     void getdata() {
