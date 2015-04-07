@@ -17,8 +17,10 @@
     <color name="Grey_800">#424242</color>
     <color name="Grey_700">#616161</color>
     <color name="Grey_500">#9E9E9E</color>
+    <color name="Grey_300">#E0E0E0</color>
 
     <color name="White">#FFFFFF</color>
+    <color name="White2">#000000</color>
 
     <color name="test">#FFCCCCCC</color>
     <color name="select">#1E88E5</color>

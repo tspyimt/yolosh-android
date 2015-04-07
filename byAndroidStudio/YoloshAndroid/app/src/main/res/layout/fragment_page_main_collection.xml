@@ -5,16 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.yolosh.android.myview.MyGridView
-        android:id="@+id/id_gridview_Collection"
-        android:layout_width="match_parent"
+    <ExpandableListView
+        android:id="@+id/id_collection_explistview"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:columnWidth="@dimen/girditem_width"
-        android:horizontalSpacing="@dimen/margin_3dp"
-        android:numColumns="auto_fit"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="6dp" />
+        android:layout_width="match_parent"
+        android:transcriptMode="disabled"
+        android:groupIndicator="@null" />
 
     <com.software.shell.fab.ActionButton
         android:id="@+id/id_fab_collection"

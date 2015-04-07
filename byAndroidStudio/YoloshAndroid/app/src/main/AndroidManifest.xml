@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yolosh.android" >
+    package="com.yolosh.android">
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_y"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/title_activity_main" />
+            android:label="@string/title_activity_main"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +28,7 @@
             android:label="@string/title_activity_register" />
         <activity
             android:name=".activity.StepActivity"
-            android:label="@string/title_activity_step" >
-        </activity>
+            android:label="@string/title_activity_step"></activity>
     </application>
 
 </manifest>
