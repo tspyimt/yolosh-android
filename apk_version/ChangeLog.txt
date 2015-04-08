@@ -1,4 +1,5 @@
-yolosh-apk_v1.009 (08/04/2015) : rebuild collection page
+yolosh-apk_v1.010 (08/04/2015) : add step, detail page
+yolosh-apk_v1.009 (07/04/2015) : rebuild collection page
 yolosh-apk_v1.008 (06/04/2015) : rebuild login activity
 yolosh-apk_v1.007 (04/04/2015) : style Actionbar color
 yolosh-apk_v1.006 (02/04/2015) : make hiding Actionbar when scroll
