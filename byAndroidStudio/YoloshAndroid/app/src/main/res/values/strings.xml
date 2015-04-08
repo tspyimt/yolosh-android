@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">YoloshAndroid</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_explorer">EXPLORER</string>
+    <string name="title_collection">COLLECTION</string>
+    <string name="title_timeline">TIMELINE</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -17,6 +17,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_step">StepActivity</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -56,6 +57,11 @@
     <string name="fab_black_stroke_color_text">Black</string>
     <string name="fab_grey_stroke_color_text">Grey</string>
     <string name="fab_yellow_stroke_color_text">Yellow 900</string>
-    <string name="title_activity_step">StepActivity</string>
+    <string name="title_activity_detail">DetailActivity</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
 
 </resources>

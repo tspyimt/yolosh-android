@@ -2,6 +2,7 @@ package com.yolosh.android.util;
 
 public class ConstantValues {
     public static final String[] TITLE_FRAGMENT_MAIN = new String[]{"EXPLORER", "COLLECTION", "TIMELINE"};
+    public static final CharSequence[] TITLE_FRAGMENT_MAIN2 = new CharSequence[]{"EXPLORER", "COLLECTION", "TIMELINE"};
 
     public static final int GRIDVIEW_DELAY_ANIMATION = 2;
 

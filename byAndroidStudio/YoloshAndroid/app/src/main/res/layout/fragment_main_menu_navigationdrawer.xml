@@ -1,10 +1,28 @@
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/id_layout_navigationMenu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#cccc"
-    android:choiceMode="singleChoice"
-    android:divider="@android:color/transparent"
+    android:background="@color/White"
+    android:divider="@android:color/white"
     android:dividerHeight="0dp"
-    tools:context="com.yolosh.android.fragment.drawerfragment.MainNavigationDrawerFragment" />
+    android:orientation="vertical"
+    android:clickable="true"
+    tools:context="com.yolosh.android.fragment.drawerfragment.MainNavigationDrawerFragment">
+
+    <TextView
+        android:id="@+id/id_name_navigator_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Text_SingleLine_BlackColor" />
+
+    <Button
+        android:id="@+id/id_btn_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:textColor="@color/Black" />
+
+
+</LinearLayout>
 

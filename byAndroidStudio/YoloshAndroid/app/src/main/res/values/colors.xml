@@ -9,6 +9,7 @@
 
     <color name="Green_900">#1B5E20</color>
     <color name="Green_600">#43A047</color>
+    <color name="Green_A200">#69F0AE</color>
 
     <color name="Cyan_800">#00838F</color>
     <color name="Cyan_500">#00BCD4</color>
@@ -18,6 +19,8 @@
     <color name="Grey_700">#616161</color>
     <color name="Grey_500">#9E9E9E</color>
     <color name="Grey_300">#E0E0E0</color>
+
+    <color name="Teal_500">#009688</color>
 
     <color name="White">#FFFFFF</color>
     <color name="White2">#000000</color>

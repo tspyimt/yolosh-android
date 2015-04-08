@@ -8,20 +8,20 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
-        android:layout_gravity="left"
-        android:textColor="@color/Black"
+        android:layout_gravity="start"
         android:gravity="center_vertical"
-        android:singleLine="true" />
+        style="@style/Text_SingleLine_BlackColor" />
 
     <TextView
         android:id="@+id/itemDescr"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
+        android:textSize="18dp"
         android:drawableRight="@drawable/star"
-        android:textColor="@color/Black"
+        android:drawableEnd="@drawable/star"
         android:gravity="center_vertical|end"
-        android:singleLine="true" />
+        style="@style/Text_SingleLine_BlackColor" />
 
 </LinearLayout>

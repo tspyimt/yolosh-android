@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import com.yolosh.android.R;
 import com.yolosh.android.fragment.drawerfragment.MainNavigationDrawerFragment;
-import com.yolosh.android.fragment.MainFragment;
+import com.yolosh.android.fragment.mainfragment.MainFragment;
 
 public class MainActivity extends ActionBarActivity
         implements MainNavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
-    private CharSequence mTitle;
+    private static CharSequence mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,27 +48,30 @@ public class MainActivity extends ActionBarActivity
                 .commit();
     }
 
-    public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.title_section1);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
-        }
-    }
+//    public void onSectionAttached(int number) {
+//        switch (number) {
+//            case 1:
+//                mTitle = getString(R.string.title_section1);
+//                break;
+//            case 2:
+//                mTitle = getString(R.string.title_section2);
+//                break;
+//            case 3:
+//                mTitle = getString(R.string.title_section3);
+//                break;
+//        }
+//    }
 
     public void restoreActionBar() {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(android.support.v7.app.ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
+//        actionBar.setTitle(mTitle);
     }
 
+//    public static void setNewTitle(String title) {
+//        mTitle = title;
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,7 +80,7 @@ public class MainActivity extends ActionBarActivity
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.main, menu);
-            restoreActionBar();
+//            restoreActionBar();
             return true;
         }
         return super.onCreateOptionsMenu(menu);

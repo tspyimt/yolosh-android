@@ -1,5 +1,6 @@
 package com.yolosh.android.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import com.yolosh.android.R;
 import com.yolosh.android.adapter.CollectionAdapter;
 import com.yolosh.android.model.CollectionGroup;
 import com.yolosh.android.model.CollectionItem;
+import com.yolosh.android.util.UriValues;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,16 +65,28 @@ public class CollectionPageFragment extends Fragment {
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                if(parent.isGroupExpanded(groupPosition)){
+                if (parent.isGroupExpanded(groupPosition)) {
                     parent.collapseGroup(groupPosition);
-                }else{
+                } else {
                     boolean animateExpansion = false;
-                    parent.expandGroup(groupPosition,animateExpansion);
+                    parent.expandGroup(groupPosition, animateExpansion);
                 }
                 //telling the listView we have handled the group click, and don't want the default actions.
                 return true;
             }
         });
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Intent intent = new Intent();
+                intent.setAction(UriValues.ACTION_STEP_ACTIVITY);
+                startActivity(intent);
+                return true;
+            }
+        });
+        // open group when open first
+        listView.expandGroup(0);
+        listView.expandGroup(1);
 
         fab = (ActionButton) view.findViewById(R.id.id_fab_collection);
 

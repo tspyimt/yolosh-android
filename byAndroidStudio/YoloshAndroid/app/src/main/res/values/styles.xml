@@ -17,6 +17,7 @@
         <item name="background">@color/Cyan_500</item>
         <item name="titleTextStyle">@style/MyApp.MyTitleTextStyle</item>
     </style>
+
     <style name="MyApp.MyTitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@android:color/white</item>
     </style>
@@ -31,6 +32,16 @@
         <!--<item name="android:divider">@android:color/white</item>-->
         <!--<item name="android:dividerHeight">1dp</item>-->
         <item name="android:background">@color/Cyan_500</item>
+    </style>
+
+
+    <style name="Text_SingleLine_BlackColor" parent="Base.TextAppearance.AppCompat">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:paddingLeft">3dp</item>
     </style>
 
 
