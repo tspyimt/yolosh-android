@@ -1,6 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/theme1">
@@ -30,8 +30,8 @@
                 android:layout_height="wrap_content"
                 android:text="You only live one so happy"
                 android:layout_gravity="center_vertical|center_horizontal" />
-        </LinearLayout>
 
+        </LinearLayout>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/id_welcome_viewpager"
@@ -54,13 +54,16 @@
             app:strokeWidth="1dp" />
     </LinearLayout>
 
-    <com.gc.materialdesign.views.ButtonRectangle
-        android:id="@+id/id_btn_Sign_up"
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/facebook_login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/Blue_600"
         android:layout_gravity="bottom|start"
-        android:text="@string/text_sign_up"
+        android:gravity="start"
+        android:padding="7dp"
+        facebook:confirm_logout="false"
+        facebook:login_text="@string/facebook_login_button"
+        facebook:logout_text="Do LOg Out"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="15dp" />
 

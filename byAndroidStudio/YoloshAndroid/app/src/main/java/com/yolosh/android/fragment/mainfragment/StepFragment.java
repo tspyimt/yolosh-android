@@ -65,6 +65,8 @@ public class StepFragment extends Fragment {
                 Intent intent = new Intent();
                 intent.setAction(UriValues.ACTION_DETAIL_ACTIVITY);
                 startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_in_right,
+                        R.anim.slide_out_left);
             }
         });
 

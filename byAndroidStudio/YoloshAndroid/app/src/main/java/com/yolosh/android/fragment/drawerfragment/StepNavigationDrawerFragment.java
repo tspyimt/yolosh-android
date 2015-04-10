@@ -1,12 +1,14 @@
 package com.yolosh.android.fragment.drawerfragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,10 +21,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
+import com.squareup.picasso.Picasso;
 import com.yolosh.android.R;
+import com.yolosh.android.activity.LoginActivity;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -61,8 +69,9 @@ public class StepNavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
 
+    private ImageView imageView;
     private TextView textViewName;
-    private Button buttonHome;
+    private Button buttonHome, buttonLogOut;
 
     public StepNavigationDrawerFragment() {
     }
@@ -105,8 +114,38 @@ public class StepNavigationDrawerFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        imageView = (ImageView) view.findViewById(R.id.id_img_user_menu);
         textViewName = (TextView) view.findViewById(R.id.id_name_navigator_menu);
         buttonHome = (Button) view.findViewById(R.id.id_btn_home);
+        buttonLogOut = (Button) view.findViewById(R.id.id_btn_log_out);
+
+
+        buttonLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginManager.getInstance().logOut();
+
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                ActivityCompat.finishAffinity(getActivity());
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_in_left,
+                        R.anim.slide_out_right);
+            }
+        });
+    }
+
+    // init User information
+    public void initUser() {
+        boolean enableButtons = AccessToken.getCurrentAccessToken() != null;
+        Profile mProfile = Profile.getCurrentProfile();
+        if (enableButtons && mProfile != null) {
+            textViewName.setText(mProfile.getName());
+
+            Picasso.with(getActivity())
+                    .load(mProfile.getProfilePictureUri(70, 70))
+                    .error(R.drawable.icon).placeholder(R.drawable.icon)
+                    .into(imageView);
+        }
     }
 
     public boolean isDrawerOpen() {
@@ -182,6 +221,8 @@ public class StepNavigationDrawerFragment extends Fragment {
         });
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        initUser();
     }
 
 //    private void selectItem(int position) {

@@ -10,17 +10,38 @@
     android:clickable="true"
     tools:context="com.yolosh.android.fragment.drawerfragment.MainNavigationDrawerFragment">
 
-    <TextView
-        android:id="@+id/id_name_navigator_menu"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Text_SingleLine_BlackColor" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/id_img_user_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/id_name_navigator_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Text_SingleLine_BlackColor"
+            android:gravity="center_vertical|start"
+            android:layout_gravity="center_vertical" />
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/id_btn_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Home"
+        android:textColor="@color/Black" />
+
+    <Button
+        android:id="@+id/id_btn_log_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
         android:textColor="@color/Black" />
 
 

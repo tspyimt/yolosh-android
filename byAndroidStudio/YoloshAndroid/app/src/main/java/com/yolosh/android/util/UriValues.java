@@ -3,6 +3,7 @@ package com.yolosh.android.util;
 
 public class UriValues {
     // Action values
+    public static final String ACTION_LOGIN_ACTIVITY = "com.yolosh.android.activity.LOGIN_ACTIVITY";
     public static final String ACTION_MAIN_ACTIVITY = "com.yolosh.android.activity.MAIN_ACTIVITY";
     public static final String ACTION_STEP_ACTIVITY = "com.yolosh.android.activity.STEP_ACTIVITY";
     public static final String ACTION_DETAIL_ACTIVITY = "com.yolosh.android.activity.DETAIL_ACTIVITY";

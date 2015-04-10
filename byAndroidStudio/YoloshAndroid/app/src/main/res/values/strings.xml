@@ -1,4 +1,17 @@
 <resources>
+    <!-- facebook -->
+    <string name="APP_ID_FACEBOOK">747713932014615</string>
+    <string name="DEV_ID_FACEBOOK">UMWgmuK9m05AsoLp105U2pTy6H4=</string>
+
+    <string name="cancelled">Cancelled</string>
+    <string name="hello_user">Hello %1$s!</string>
+    <string name="error">Error</string>
+    <string name="ok">OK</string>
+    <string name="permission_not_granted">Unable to perform selected action because permissions were not granted.</string>
+    <string name="success">Success</string>
+    <string name="successfully_posted_post">Post ID: %1$s</string>
+    <string name="facebook_login_button">Log in with\nFacebook</string>
+    <!-- app -->
     <string name="app_name">YoloshAndroid</string>
 
     <string name="title_explorer">EXPLORER</string>

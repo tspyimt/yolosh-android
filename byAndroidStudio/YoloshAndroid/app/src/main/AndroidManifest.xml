@@ -2,11 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yolosh.android">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_y"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".activity.MainActivity"
             android:configChanges="orientation"
@@ -25,7 +29,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -37,7 +40,6 @@
             <intent-filter>
                 <action android:name="com.yolosh.android.activity.DETAIL_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
-
             </intent-filter>
         </activity>
         <activity
@@ -51,6 +53,30 @@
             </intent-filter>
 
         </activity>
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/app_name" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/APP_ID_FACEBOOK" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationName"
+            android:value="@string/app_name" />
+
+        <provider
+            android:authorities="com.facebook.app.FacebookContentProvider747713932014615"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true" />
+
+        <receiver android:name=".broadcast.MyFacebookBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.facebook.platform.AppCallResultBroadcast" />
+            </intent-filter>
+        </receiver>
 
     </application>
 

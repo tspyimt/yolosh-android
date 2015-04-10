@@ -1,15 +1,18 @@
 package com.yolosh.android.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.yolosh.android.R;
 import com.yolosh.android.fragment.drawerfragment.MainNavigationDrawerFragment;
 import com.yolosh.android.fragment.mainfragment.MainFragment;
+import com.yolosh.android.util.MessageKeyValues;
 
 public class MainActivity extends ActionBarActivity
         implements MainNavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -23,6 +26,7 @@ public class MainActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private static CharSequence mTitle;
+    private String userName = "", userImgUri = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,6 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment = (MainNavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
-
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
@@ -99,5 +102,13 @@ public class MainActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left,
+                R.anim.slide_out_right);
     }
 }
