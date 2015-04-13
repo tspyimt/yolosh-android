@@ -114,8 +114,8 @@ public class StepNavigationDrawerFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imageView = (ImageView) view.findViewById(R.id.id_img_user_menu);
-        textViewName = (TextView) view.findViewById(R.id.id_name_navigator_menu);
+        imageView = (ImageView) view.findViewById(R.id.id_img_user);
+        textViewName = (TextView) view.findViewById(R.id.id_name_user);
         buttonHome = (Button) view.findViewById(R.id.id_btn_home);
         buttonLogOut = (Button) view.findViewById(R.id.id_btn_log_out);
 

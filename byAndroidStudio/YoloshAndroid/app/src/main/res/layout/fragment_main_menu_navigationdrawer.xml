@@ -15,12 +15,12 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/id_img_user_menu"
+            android:id="@+id/id_img_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/id_name_navigator_menu"
+            android:id="@+id/id_name_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Text_SingleLine_BlackColor"
@@ -43,6 +43,14 @@
         android:layout_height="wrap_content"
         android:text="Log Out"
         android:textColor="@color/Black" />
+
+    <!--<Button-->
+    <!--android:id="@+id/id_btn_log_out2"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Log Out gg"-->
+    <!--android:textColor="@color/Black"-->
+    <!--android:onClick="clickLogOut" />-->
 
 
 </LinearLayout>

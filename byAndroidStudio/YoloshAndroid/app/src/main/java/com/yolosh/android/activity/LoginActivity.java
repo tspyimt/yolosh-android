@@ -1,15 +1,19 @@
 package com.yolosh.android.activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
-//import com.facebook.login.widget.CallbackManager;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookAuthorizationException;
@@ -18,13 +22,16 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.share.Sharer;
 import com.facebook.share.widget.ShareDialog;
-import com.gc.materialdesign.views.ButtonRectangle;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.plus.Plus;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.PageIndicator;
 import com.yolosh.android.R;
@@ -33,20 +40,29 @@ import com.yolosh.android.R.id;
 import com.yolosh.android.R.layout;
 import com.yolosh.android.adapter.WelcomePageAdapter;
 import com.yolosh.android.fragment.login.WelcomePageFragment;
-import com.yolosh.android.util.MessageKeyValues;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginActivity extends FragmentActivity {
+public class LoginActivity extends FragmentActivity
+        implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+    // fragment
     private WelcomePageAdapter pageAdapter;
     private PageIndicator mIndicator;
-    private ButtonRectangle buttonSigup, buttonLogin;
-    // facebook
+
+    // Google client to communicate with Google
+    private static final int RC_SIGN_IN = 0;
+    private boolean mIntentInProgress;
+    private boolean signedInUser;
+    private ConnectionResult mConnectionResult;
+    private GoogleApiClient mGoogleApiClient;
+    private SignInButton googleSignInButton;
+
+    // facebook field
     private final String PENDING_ACTION_BUNDLE_KEY =
             "com.yolosh.android.activity:PendingAction";
-    private LoginButton loginButton;
+    private LoginButton facebookLoginButton;
     private PendingAction pendingAction = PendingAction.NONE;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
@@ -55,12 +71,12 @@ public class LoginActivity extends FragmentActivity {
     private FacebookCallback<Sharer.Result> shareCallback = new FacebookCallback<Sharer.Result>() {
         @Override
         public void onCancel() {
-            Log.d("HelloFacebook", "Canceled");
+//            Log.d("HelloFacebook", "Canceled");
         }
 
         @Override
         public void onError(FacebookException error) {
-            Log.d("HelloFacebook", String.format("Error: %s", error.toString()));
+//            Log.d("HelloFacebook", String.format("Error: %s", error.toString()));
             String title = getString(R.string.error);
             String alertMessage = error.getMessage();
             showResult(title, alertMessage);
@@ -68,7 +84,7 @@ public class LoginActivity extends FragmentActivity {
 
         @Override
         public void onSuccess(Sharer.Result result) {
-            Log.d("HelloFacebook", "Success!");
+//            Log.d("HelloFacebook", "Success!");
             if (result.getPostId() != null) {
                 String title = getString(R.string.success);
                 String id = result.getPostId();
@@ -96,16 +112,17 @@ public class LoginActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // facebook
+        // init facebook login manager
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
 
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
+
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         handlePendingAction();
-                        Log.d("LOG", "do log in");
+//                        Log.d("LOG", "do log in");
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         LoginActivity.this.finish();
@@ -115,7 +132,7 @@ public class LoginActivity extends FragmentActivity {
 
                     @Override
                     public void onCancel() {
-                        Log.d("LOG", "onCancel");
+//                        Log.d("LOG", "onCancel");
                         if (pendingAction != PendingAction.NONE) {
                             showAlert();
                             pendingAction = PendingAction.NONE;
@@ -124,7 +141,7 @@ public class LoginActivity extends FragmentActivity {
 
                     @Override
                     public void onError(FacebookException exception) {
-                        Log.d("LOG", "onError" + exception);
+//                        Log.d("LOG", "onError" + exception);
                         if (pendingAction != PendingAction.NONE
                                 && exception instanceof FacebookAuthorizationException) {
                             showAlert();
@@ -133,7 +150,7 @@ public class LoginActivity extends FragmentActivity {
                     }
 
                     private void showAlert() {
-                        Log.d("LOG", "showAlert");
+//                        Log.d("LOG", "showAlert");
                         new AlertDialog.Builder(LoginActivity.this)
                                 .setTitle(R.string.cancelled)
                                 .setMessage(R.string.permission_not_granted)
@@ -151,10 +168,26 @@ public class LoginActivity extends FragmentActivity {
             String name = savedInstanceState.getString(PENDING_ACTION_BUNDLE_KEY);
             pendingAction = PendingAction.valueOf(name);
         }
-        // init view
+        // init login view
         setContentView(layout.activity_login);
-        loginButton = (LoginButton) findViewById(id.facebook_login_button);
-        loginButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        // init google view
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Plus.API, Plus.PlusOptions.builder().build())
+                .addScope(Plus.SCOPE_PLUS_LOGIN).build();
+
+        googleSignInButton = (SignInButton) findViewById(R.id.google_sigin_button);
+        googleSignInButton.setSize(SignInButton.SIZE_ICON_ONLY);
+        googleSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                googlePlusLogin();
+            }
+        });
+
+        facebookLoginButton = (LoginButton) findViewById(id.facebook_login_button);
+        facebookLoginButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 
         profileTracker = new ProfileTracker() {
             @Override
@@ -173,25 +206,12 @@ public class LoginActivity extends FragmentActivity {
 
         mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
         mIndicator.setViewPager(pager);
+    }
 
-//        buttonSigup = (ButtonRectangle) findViewById(id.id_btn_Sign_up);
-        buttonLogin = (ButtonRectangle) findViewById(id.id_btn_Log_in);
-
-//        buttonSigup.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//            }
-//        });
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("LOG", "do log out");
-                LoginManager.getInstance().logOut();
-//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                startActivity(intent);
-//                LoginActivity.this.finish();
-            }
-        });
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
     }
 
     @Override
@@ -200,22 +220,17 @@ public class LoginActivity extends FragmentActivity {
         // Call the 'activateApp' method to log an app event for use in analytics and advertising
         // reporting.  Do so in the onResume methods of the primary Activities that an app may be
         // launched into.
-        AppEventsLogger.activateApp(this);
-
+//        AppEventsLogger.activateApp(this);
         if (isLoggedIn()) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             LoginActivity.this.finish();
+        } else {
+            if (!isNetworkAvailable()) {
+                Toast.makeText(this, "No Internet connection", Toast.LENGTH_SHORT).show();
+                LoginManager.getInstance().logOut();
+            }
         }
-    }
-
-    public boolean isLoggedIn() {
-        boolean enableButtons = AccessToken.getCurrentAccessToken() != null;
-        Profile mProfile = Profile.getCurrentProfile();
-        Log.d("LOG", enableButtons + "");
-        if (enableButtons && mProfile != null) {
-            return true;
-        } else return false;
     }
 
     @Override
@@ -224,7 +239,15 @@ public class LoginActivity extends FragmentActivity {
         // Call the 'deactivateApp' method to log an app event for use in analytics and advertising
         // reporting.  Do so in the onPause methods of the primary Activities that an app may be
         // launched into.
-        AppEventsLogger.deactivateApp(this);
+//        AppEventsLogger.deactivateApp(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
     }
 
     @Override
@@ -241,11 +264,32 @@ public class LoginActivity extends FragmentActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+//        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case RC_SIGN_IN:
+                if (resultCode == RESULT_OK) {
+                    signedInUser = false;
+
+                }
+                mIntentInProgress = false;
+                if (!mGoogleApiClient.isConnecting()) {
+                    mGoogleApiClient.connect();
+                }
+                break;
+        }
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    // faceboook method
+    public boolean isLoggedIn() {
+        boolean enableButtons = AccessToken.getCurrentAccessToken() != null;
+        Profile mProfile = Profile.getCurrentProfile();
+        Log.d("LOG", enableButtons + "  isloggin?");
+        if (enableButtons && mProfile != null) {
+            return true;
+        } else return false;
+    }
+
+    //
     private void handlePendingAction() {
         PendingAction previouslyPendingAction = pendingAction;
         // These actions may re-set pendingAction if they are still pending, but we assume they
@@ -264,6 +308,54 @@ public class LoginActivity extends FragmentActivity {
         }
     }
 
+    @Override
+    public void onConnected(Bundle bundle) {
+        signedInUser = false;
+        if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        mGoogleApiClient.connect();
+    }
+
+    // google
+
+    private void googlePlusLogin() {
+        if (!mGoogleApiClient.isConnecting()) {
+            signedInUser = true;
+            resolveSignInError();
+        }
+    }
+
+    private void resolveSignInError() {
+        if (mConnectionResult.hasResolution()) {
+            try {
+                mIntentInProgress = true;
+                mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
+            } catch (IntentSender.SendIntentException e) {
+                mIntentInProgress = false;
+                mGoogleApiClient.connect();
+            }
+        }
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        if (!connectionResult.hasResolution()) {
+            GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(), this, 0).show();
+            return;
+        }
+
+        if (!mIntentInProgress) {
+            // store mConnectionResult
+            mConnectionResult = connectionResult;
+        }
+    }
+
     // init list pages welcome screen
     private List<Fragment> getFragments() {
         List<Fragment> fList = new ArrayList<Fragment>();
@@ -277,4 +369,11 @@ public class LoginActivity extends FragmentActivity {
         return fList;
     }
 
+    // check network is available
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return (activeNetworkInfo != null && activeNetworkInfo.isConnected());
+    }
 }

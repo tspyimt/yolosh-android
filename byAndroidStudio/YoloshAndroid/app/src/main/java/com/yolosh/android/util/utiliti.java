@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.net.ConnectivityManager;
 import android.util.Base64;
 import android.util.Log;
 
@@ -30,4 +31,6 @@ public class utiliti {
         } catch (NoSuchAlgorithmException e) {
         }
     }
+
+
 }

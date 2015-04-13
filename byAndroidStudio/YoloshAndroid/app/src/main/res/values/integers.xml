@@ -2,7 +2,7 @@
 <resources>
 
     <integer name="sliding_acvitity_time">300</integer>
-    <integer name="google_play_services_version">1</integer>
+    <integer name="google_play_services_version">7095000</integer>
     
 
 </resources>

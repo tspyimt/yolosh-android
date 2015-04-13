@@ -41,7 +41,7 @@ import com.yolosh.android.util.UriValues;
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
-public class MainNavigationDrawerFragment extends Fragment {
+public class MainNavigationDrawerFragment extends BaseNavigatorDrawerFragment {
 
     /**
      * Remember the position of the selected item.
@@ -73,9 +73,9 @@ public class MainNavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
 
-    private ImageView imageView;
-    private TextView textViewName;
-    private Button buttonHome, buttonLogOut;
+//    private ImageView imageView;
+//    private TextView textViewName;
+//    private Button buttonHome, buttonLogOut;
 
     public MainNavigationDrawerFragment() {
     }
@@ -122,38 +122,12 @@ public class MainNavigationDrawerFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        imageView = (ImageView) view.findViewById(R.id.id_img_user_menu);
-        textViewName = (TextView) view.findViewById(R.id.id_name_navigator_menu);
-        buttonHome = (Button) view.findViewById(R.id.id_btn_home);
-        buttonLogOut = (Button) view.findViewById(R.id.id_btn_log_out);
 
 
-        buttonLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginManager.getInstance().logOut();
 
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                ActivityCompat.finishAffinity(getActivity());
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.slide_in_left,
-                        R.anim.slide_out_right);
-            }
-        });
     }
 
-    public void initUser() {
-        boolean enableButtons = AccessToken.getCurrentAccessToken() != null;
-        Profile mProfile = Profile.getCurrentProfile();
-        if (enableButtons && mProfile != null) {
-            textViewName.setText(mProfile.getName());
 
-            Picasso.with(getActivity())
-                    .load(mProfile.getProfilePictureUri(70, 70))
-                    .error(R.drawable.icon).placeholder(R.drawable.icon)
-                    .into(imageView);
-        }
-    }
 
 
     public boolean isDrawerOpen() {
@@ -190,7 +164,6 @@ public class MainNavigationDrawerFragment extends Fragment {
                 if (!isAdded()) {
                     return;
                 }
-
                 getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
 
@@ -232,19 +205,6 @@ public class MainNavigationDrawerFragment extends Fragment {
 
         initUser();
     }
-
-//    private void selectItem(int position) {
-//        mCurrentSelectedPosition = position;
-//        if (mDrawerListView != null) {
-//            mDrawerListView.setItemChecked(position, true);
-//        }
-//        if (mDrawerLayout != null) {
-//            mDrawerLayout.closeDrawer(mFragmentContainerView);
-//        }
-//        if (mCallbacks != null) {
-//            mCallbacks.onNavigationDrawerItemSelected(position);
-//        }
-//    }
 
     @Override
     public void onAttach(Activity activity) {

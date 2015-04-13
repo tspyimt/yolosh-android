@@ -14,4 +14,16 @@ public class SaveCode {
 //    android:text="@string/text_sign_up"
 //    android:layout_marginLeft="20dp"
 //    android:layout_marginBottom="15dp" />
+
+//    <com.gc.materialdesign.views.ButtonRectangle
+//    android:id="@+id/id_btn_Log_in"
+//    android:layout_width="wrap_content"
+//    android:layout_height="wrap_content"
+//    android:background="@color/Green_600"
+//    android:layout_gravity="bottom|end"
+//    android:text="@string/text_log_in"
+//    android:layout_marginRight="20dp"
+//    android:layout_marginBottom="15dp" />
+
+//    compile 'com.github.navasmdc:MaterialDesign:1.+@aar'
 }

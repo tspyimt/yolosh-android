@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('C:/Users/LostSoul/.android/debug.keystore')
+            storePassword 'android'
+        }
+    }
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
-
     defaultConfig {
         applicationId "com.yolosh.android"
         minSdkVersion 14
@@ -16,6 +23,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            signingConfig signingConfigs.config
+        }
     }
 }
 
@@ -26,8 +36,8 @@ dependencies {
     compile 'com.android.support:support-annotations:21.0.3'
     compile 'com.android.support:recyclerview-v7:21.0.3'
     compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.github.navasmdc:MaterialDesign:1.+@aar'
     compile 'com.facebook.android:facebook-android-sdk:4.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile project(':library_paging')
+    compile 'com.google.android.gms:play-services:7.0.0'
 }
