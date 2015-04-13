@@ -124,11 +124,7 @@ public class MainNavigationDrawerFragment extends BaseNavigatorDrawerFragment {
 
 
 
-
     }
-
-
-
 
     public boolean isDrawerOpen() {
         return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);

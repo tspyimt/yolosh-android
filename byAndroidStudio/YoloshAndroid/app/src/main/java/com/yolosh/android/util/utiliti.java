@@ -15,6 +15,9 @@ import java.security.NoSuchAlgorithmException;
  * Created by LostSoul on 4/10/2015.
  */
 public class utiliti {
+
+//    public static int GOOGLE_IS_LOGGED = 0;
+
     //Your package name here
     private static final String packageName = "com.yolosh.android";
 

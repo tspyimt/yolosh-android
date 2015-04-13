@@ -53,8 +53,9 @@ public class LoginActivity extends FragmentActivity
 
     // Google client to communicate with Google
     private static final int RC_SIGN_IN = 0;
+    private boolean mSignInClicked;
     private boolean mIntentInProgress;
-    private boolean signedInUser;
+
     private ConnectionResult mConnectionResult;
     private GoogleApiClient mGoogleApiClient;
     private SignInButton googleSignInButton;
@@ -171,18 +172,18 @@ public class LoginActivity extends FragmentActivity
         // init login view
         setContentView(layout.activity_login);
         // init google view
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Plus.API, Plus.PlusOptions.builder().build())
-                .addScope(Plus.SCOPE_PLUS_LOGIN).build();
+        initGoogleApiClient();
 
         googleSignInButton = (SignInButton) findViewById(R.id.google_sigin_button);
         googleSignInButton.setSize(SignInButton.SIZE_ICON_ONLY);
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                googlePlusLogin();
+                if(isNetworkAvailable()) {
+                    googlePlusLogin();
+                }else {
+                    Toast.makeText(LoginActivity.this, "No Internet connection", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -206,6 +207,21 @@ public class LoginActivity extends FragmentActivity
 
         mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
         mIndicator.setViewPager(pager);
+
+//        if ( Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            LoginActivity.this.finish();
+//            Log.d("LOG", "Pass over login activity");
+//        }
+    }
+
+    private void initGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Plus.API, Plus.PlusOptions.builder().build())
+                .addScope(Plus.SCOPE_PLUS_LOGIN).build();
     }
 
     @Override
@@ -221,16 +237,27 @@ public class LoginActivity extends FragmentActivity
         // reporting.  Do so in the onResume methods of the primary Activities that an app may be
         // launched into.
 //        AppEventsLogger.activateApp(this);
-        if (isLoggedIn()) {
+        if (isFacebookLoggedIn()) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             LoginActivity.this.finish();
+//        } else if (mGoogleApiClient.isConnected() && Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            LoginActivity.this.finish();
         } else {
             if (!isNetworkAvailable()) {
                 Toast.makeText(this, "No Internet connection", Toast.LENGTH_SHORT).show();
                 LoginManager.getInstance().logOut();
             }
         }
+//        mGoogleApiClient.connect();
+//        if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            LoginActivity.this.finish();
+//            Log.d("LOG", "Pass over login activity2");
+//        }
     }
 
     @Override
@@ -265,25 +292,27 @@ public class LoginActivity extends FragmentActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case RC_SIGN_IN:
-                if (resultCode == RESULT_OK) {
-                    signedInUser = false;
-
-                }
-                mIntentInProgress = false;
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode != RESULT_OK) {
+                mSignInClicked = false;
                 if (!mGoogleApiClient.isConnecting()) {
-                    mGoogleApiClient.connect();
+                    mGoogleApiClient.disconnect();
+                    initGoogleApiClient();
+                    Log.d("LOG", "Cancel do disconnect");
                 }
-                break;
+            }
+            mIntentInProgress = false;
+            if (!mGoogleApiClient.isConnecting()) {
+                mGoogleApiClient.connect();
+            }
         }
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    public boolean isLoggedIn() {
+    public boolean isFacebookLoggedIn() {
         boolean enableButtons = AccessToken.getCurrentAccessToken() != null;
         Profile mProfile = Profile.getCurrentProfile();
-        Log.d("LOG", enableButtons + "  isloggin?");
+//        Log.d("LOG", enableButtons + "  isloggin?");
         if (enableButtons && mProfile != null) {
             return true;
         } else return false;
@@ -308,12 +337,16 @@ public class LoginActivity extends FragmentActivity
         }
     }
 
+    // google:
     @Override
     public void onConnected(Bundle bundle) {
-        signedInUser = false;
-        if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
+//        signedInUser = false;
+        if (mGoogleApiClient.isConnected() && Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
+            LoginActivity.this.finish();
+//            overridePendingTransition(R.anim.slide_in_right,
+//                    R.anim.slide_out_left);
         }
     }
 
@@ -322,12 +355,11 @@ public class LoginActivity extends FragmentActivity
         mGoogleApiClient.connect();
     }
 
-    // google
 
     private void googlePlusLogin() {
         if (!mGoogleApiClient.isConnecting()) {
-            signedInUser = true;
-            resolveSignInError();
+            mSignInClicked = true;
+            mGoogleApiClient.connect();
         }
     }
 
@@ -345,14 +377,15 @@ public class LoginActivity extends FragmentActivity
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        if (!connectionResult.hasResolution()) {
-            GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(), this, 0).show();
-            return;
-        }
-
         if (!mIntentInProgress) {
-            // store mConnectionResult
-            mConnectionResult = connectionResult;
+            // Store the ConnectionResult so that we can use it later when the user clicks
+            // 'sign-in'.
+            mConnectionResult = connectionResult;//
+            if (mSignInClicked) {
+                // The user has already clicked 'sign-in' so we attempt to resolve all
+                // errors until the user is signed in, or they cancel.
+                resolveSignInError();
+            }
         }
     }
 

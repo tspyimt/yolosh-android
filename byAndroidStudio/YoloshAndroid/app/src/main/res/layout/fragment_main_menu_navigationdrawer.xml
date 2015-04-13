@@ -44,14 +44,5 @@
         android:text="Log Out"
         android:textColor="@color/Black" />
 
-    <!--<Button-->
-    <!--android:id="@+id/id_btn_log_out2"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="Log Out gg"-->
-    <!--android:textColor="@color/Black"-->
-    <!--android:onClick="clickLogOut" />-->
-
-
 </LinearLayout>
 
