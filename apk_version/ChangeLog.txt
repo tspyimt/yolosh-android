@@ -1,3 +1,4 @@
+yolosh-apk_v1.012 (13/04/2015) : google+ logIn_logOut 
 yolosh-apk_v1.011 (10/04/2015) : facebook logIn_logOut, slide screen
 yolosh-apk_v1.010 (08/04/2015) : add step, detail page
 yolosh-apk_v1.009 (07/04/2015) : rebuild collection page
